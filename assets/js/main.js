@@ -19,11 +19,13 @@ function countdownTimer() {
         time--;
         timer.textContent = time;
 
+        if (time <= 0){
+            clearInterval(interval);
+        }
+
     }, 1000);
 
-    if (time <= 0){
-        endQuiz();
-    }
+
 }
 
 // event listener for button click to start the quiz
@@ -43,9 +45,6 @@ function getQuestions() {
     choiceText.textContent = currentQuestion.title;
 }
 
-function endQuiz(){
-    clearInterval(interval);
-}
 
 // Score is calculated by time remaining. Answering quickly and correctly results in a higher score. Answering incorrectly results in a time penalty (for example, 15 seconds are subtracted from time remaining).
 
