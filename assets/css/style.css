@@ -48,3 +48,7 @@ nav {
     display: inline-block;
     padding: 1.5rem;
 }
+
+.hide {
+    display: none;
+}

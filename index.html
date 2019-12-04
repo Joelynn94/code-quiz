@@ -23,16 +23,42 @@
     </div>
 
     <div class="container">
-        <div class="text-center vertical-center">
+        <div id="startScreen" class="text-center vertical-center show">
             <h1>Coding Quiz Challenge</h1>
             <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
-            <a href="game.html">
-                <button class="btn btn-info">Start Quiz</button>
-            </a>
+            <button id="startBtn" class="btn btn-info">Start Quiz</button>
         </div>
+
+        <!-- Game container-->
+        <div id="gameScreen" class="text-center vertical-center hide">
+            <h2 id="question" class="question-text">This is question 1</h2>
+
+            <div class="choice-container">
+                <span class="choice-icon">A</span>
+                <p class="choice-text" data-number="0">Choice 0</p>
+            </div>
+
+            <div class="choice-container">
+                <span class="choice-icon">B</span>
+                <p class="choice-text" data-number="1">Choice 1</p>
+            </div>
+
+            <div class="choice-container">
+                <span class="choice-icon">C</span>
+                <p class="choice-text" data-number="2">Choice 2</p>
+            </div>
+
+            <div class="choice-container">
+                <span class="choice-icon">D</span>
+                <p class="choice-text" data-number="3">Choice 3</p>
+            </div>
+
+        </div> 
+        <!-- End Game Container-->
 
     </div> <!-- End Main Container -->
     
+    <script src="assets/js/questions.js"></script>
     <script src="assets/js/main.js"></script>
 </body>
 </html>
