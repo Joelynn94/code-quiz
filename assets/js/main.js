@@ -7,29 +7,45 @@ const startScreen = document.querySelector("#startScreen");
 const gameScreen = document.querySelector("#gameScreen");
 const hide = document.querySelector(".hide");
 
+
 // set the time based on amount of questions to answer 
 let time = questions.length * 15;
 let timer = document.querySelector("#timer");
-let interval;
+let interval = 0;
 
 // timer function immediately begins countdown when the start button is clicked. 
 function countdownTimer() {
-    // 
     interval = setInterval(function() {
-        // update time
         time--;
         timer.textContent = time;
 
     }, 1000);
+
+    if (time <= 0){
+        endQuiz();
+    }
 }
 
-// event listener for button click to start to questions
+// event listener for button click to start the quiz
 startBtn.addEventListener("click", function(){
     startScreen.setAttribute("class", "hide");
     gameScreen.classList.remove("hide");
 
     countdownTimer();
+    getQuestions();
 });
+
+function getQuestions() {
+    let questionIndex = 0;
+    let currentQuestion = questions[questionIndex];
+
+    const choiceText = document.querySelector(".question-text");
+    choiceText.textContent = currentQuestion.title;
+}
+
+function endQuiz(){
+    clearInterval(interval);
+}
 
 // Score is calculated by time remaining. Answering quickly and correctly results in a higher score. Answering incorrectly results in a time penalty (for example, 15 seconds are subtracted from time remaining).
 
