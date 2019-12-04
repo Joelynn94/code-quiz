@@ -1,31 +1,34 @@
 
-
-/*
-# Instructions
-From scratch, build a timer-based quiz application that stores high scores client-side. Following the common templates for user stories, we can frame this challenge as follows:
-As a coding bootcamp student
-I want to take a timed quiz on JavaScript fundamentals that stores high scores
-so that I can gauge my progress compared to my peers
-How do you deliver this? Here are some guidelines:
-*/
-
 //# Play proceeds as follows:
 // The user arrives at the landing page and is presented with a call-to-action to "Start Quiz." Also note the navigation option to "View Highscores" and the "Time" value set at 0.
 
-
-// Clicking the "Start Quiz" button presents the user with a series of questions. The timer is initialized with a value and immediately begins countdown.
 const startBtn = document.querySelector("#startBtn");
 const startScreen = document.querySelector("#startScreen");
 const gameScreen = document.querySelector("#gameScreen");
 const hide = document.querySelector(".hide");
 
-// timer function with a value and immediately begins countdown when the button is clicked. 
+// set the time based on amount of questions to answer 
+let time = questions.length * 15;
+let timer = document.querySelector("#timer");
+let interval;
 
+// timer function immediately begins countdown when the start button is clicked. 
+function countdownTimer() {
+    // 
+    interval = setInterval(function() {
+        // update time
+        time--;
+        timer.textContent = time;
 
-// event listener for button click 
+    }, 1000);
+}
+
+// event listener for button click to start to questions
 startBtn.addEventListener("click", function(){
     startScreen.setAttribute("class", "hide");
     gameScreen.classList.remove("hide");
+
+    countdownTimer();
 });
 
 // Score is calculated by time remaining. Answering quickly and correctly results in a higher score. Answering incorrectly results in a time penalty (for example, 15 seconds are subtracted from time remaining).
