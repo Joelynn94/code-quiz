@@ -23,14 +23,16 @@ nav {
 }
 
 .vertical-center {
-    margin-top: 25vh;
+    margin-top: 18vh;
+}
+
+.button-display {
+    display: block;
+    margin-bottom: 1rem;
 }
 
 .choice-container {
-    display: flex;
     width: 100%;
-    border: 1px solid #333;
-    background-color: #fff;
     margin-bottom: 1rem;
 }
 
