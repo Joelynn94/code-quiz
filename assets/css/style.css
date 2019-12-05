@@ -54,3 +54,14 @@ nav {
 .hide {
     display: none;
 }
+
+.wrong > hr,
+.correct > hr {
+    border-top: 2px solid rgba(0,0,0,0.2);
+} 
+
+.correct > p,
+.wrong > p  {
+    color: rgba(0,0,0,0.6);
+    text-align: left;
+}

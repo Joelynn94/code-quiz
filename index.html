@@ -13,7 +13,7 @@
     <div class="container">
         <nav class="navbar">
             <li class="nav-item text-left">
-                <a href="#">View Highscores</a>
+                <a href="#"">View Highscores</a>
             </li>
             <li class="nav-item text-right">
                 Time:
@@ -23,7 +23,7 @@
     </div>
 
     <div class="container">
-        <div id="startScreen" class="text-center vertical-center show">
+        <div id="startScreen" class="text-center vertical-center">
             <h1>Coding Quiz Challenge</h1>
             <p>Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</p>
             <button id="startBtn" class="btn btn-info">Start Quiz</button>
@@ -37,8 +37,44 @@
 
             </div>
 
+            <div id="wrongDiv" class="hide">
+                <hr>
+                <p><em>Wrong!</em></p>
+            </div>
+
+            <div id="correctDiv" class="hide">
+                <hr>
+                <p><em>Correct!</em></p>
+            </div>
+
         </div> 
         <!-- End Game Container-->
+
+        <!-- Quiz end container-->
+        <div id="endScreen" class="text-center vertical-center hide">
+            <h2>All done!</h2>
+            <p>Your final score is:<span id="finalScore"> </span></p>
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Enter your initials" aria-label="initials" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-info" type="submit">Submit</button>
+                </div>
+            </div>
+        </div>
+        <!-- End quiz container-->
+
+        <!-- Highscores container-->
+        <div id="highScores" class="text-center vertical-center hide">
+            <h2>All done!</h2>
+
+            <div id="highScores">
+
+            </div>
+
+            <button class="btn btn-primary" type="submit"><a href="index.html" class="text-white"> Go Back</a></button>
+            <button class="btn btn-outline-danger" type="submit">Clear Highscores</button>
+        </div>
+        <!-- End highscores container-->
 
     </div> <!-- End Main Container -->
     

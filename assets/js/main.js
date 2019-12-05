@@ -15,8 +15,13 @@
 const startBtn = document.querySelector("#startBtn");
 const startScreen = document.querySelector("#startScreen");
 const gameScreen = document.querySelector("#gameScreen");
-const hide = document.querySelector(".hide");
+const endScreen = document.querySelector("#endScreen");
 const choiceContainer = document.querySelector(".choice-container");
+const wrongDiv = document.querySelector("#wrongDiv");
+const correctDiv = document.querySelector("#correctDiv");
+const finalScore = document.querySelector("#finalScore");
+const hide = document.querySelector(".hide");
+
 
 // set the time based on amount of questions to answer 
 let time = questions.length * 15;
@@ -69,13 +74,42 @@ function getQuestions() {
         button.setAttribute("class", "btn btn-primary button-display");
 
         // displays a number next to the possible answer based on the index
+        // displays the choices for the question
         button.textContent = index + 1 + ". " + choice;
 
         // display on the page
         choiceContainer.appendChild(button);
 
     });
+
+    // // Loop over every question object
+    // for (var i = 0; i < questions.length; i++) {
+    //     // create new button for each choice
+    //     const button = document.createElement("button");
+    //     button.setAttribute("class", "btn btn-primary button-display");
+
+    //     // displays a number next to the possible answer based on the index
+    //     button.textContent = i + 1 + ". " + currentQuestion.choices;
+
+    //     // display on the page
+    //     choiceContainer.appendChild(button);
+    // }
+
+    const newButton = document.querySelector("button");
+
+    newButton.addEventListener("click", function(event) {
+        event.preventDefault();
+
+        if(currentQuestion.choices === currentQuestion.answer){
+            correctDiv.setAttribute("class", "correct");
+        } else {
+            time -= 15;
+            wrongDiv.setAttribute("class", "wrong");
+        }
+    });
+
 }
+
 
 // The first view of the application displays a button that starts the quiz.
 // Once the quiz begins, a timer starts.
@@ -96,6 +130,31 @@ startBtn.addEventListener("click", function(){
     getQuestions();
     
 });
+
+function highScores() {
+
+    startScreen.setAttribute("class", "hide");
+
+    gameScreen.setAttribute("class", "hide");
+    
+    endScreen.setAttribute("class", "hide");
+
+}
+
+function endQuiz() {
+
+    // show end of quiz div
+    endScreen.classList.remove("hide");
+
+    // show final score
+    finalScore.textContent = time;
+
+    highScores();
+
+}
+
+
+
 
 // Score is calculated by time remaining. Answering quickly and correctly results in a higher score. Answering incorrectly results in a time penalty (for example, 15 seconds are subtracted from time remaining).
 
