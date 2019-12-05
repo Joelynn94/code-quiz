@@ -28,10 +28,13 @@ let interval = 0;
 
 // timer function immediately begins countdown when the start button is clicked. 
 function countdownTimer() {
+
     // setting an interval of 1 second
     interval = setInterval(function() {
+
         // decrease time every second
         time--;
+
         // display the time in the timer span
         timer.textContent = time;
 
@@ -40,14 +43,17 @@ function countdownTimer() {
             clearInterval(interval);
         }
     }, 1000);
+
 }
 
 // Clicking the start button displays a series of questions.
 
 // function to get questions from the array
 function getQuestions() {
+
     // question index 
     let questionIndex = 0;
+
     // setting the index of the questions array to a variable
     let currentQuestion = questions[questionIndex];
 
@@ -57,13 +63,17 @@ function getQuestions() {
 
     // looping through the choices in the object
     currentQuestion.choices.forEach(function(choice, index) {
+
         // create new button for each choice
         const button = document.createElement("button");
         button.setAttribute("class", "btn btn-primary button-display");
+
         // displays a number next to the possible answer based on the index
         button.textContent = index + 1 + ". " + choice;
+
         // display on the page
         choiceContainer.appendChild(button);
+
     });
 }
 
@@ -72,15 +82,19 @@ function getQuestions() {
 
 // event listener for button click to start the quiz
 startBtn.addEventListener("click", function(){
+
     // add a class of hide to the startScreen
     startScreen.setAttribute("class", "hide");
+
     // removes the class hide from the gameScreen
     gameScreen.classList.remove("hide");
 
     // call the timer on click
     countdownTimer();
+
     // get questions on click
     getQuestions();
+    
 });
 
 // Score is calculated by time remaining. Answering quickly and correctly results in a higher score. Answering incorrectly results in a time penalty (for example, 15 seconds are subtracted from time remaining).
