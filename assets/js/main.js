@@ -46,6 +46,7 @@ function countdownTimer() {
         // checks if time hits zero - if it does - clear the time
         if (time <= 0){
             clearInterval(interval);
+            endQuiz();
         }
     }, 1000);
 
@@ -67,49 +68,35 @@ function getQuestions() {
     questionText.textContent = currentQuestion.title;
 
     // looping through the choices in the object
-    currentQuestion.choices.forEach(function(choice, index) {
+    currentQuestion.choices.forEach(function (choice) {
 
-        // create new button for each choice
-        const button = document.createElement("button");
-        button.setAttribute("class", "btn btn-primary button-display");
+      // create new button for each choice
+      const button = document.createElement("button");
+      button.setAttribute("class", "btn btn-primary button-display");
 
-        // displays a number next to the possible answer based on the index
-        // displays the choices for the question
-        button.textContent = index + 1 + ". " + choice;
-
-        // display on the page
-        choiceContainer.appendChild(button);
-
-    });
-
-    // // Loop over every question object
-    // for (var i = 0; i < questions.length; i++) {
-    //     // create new button for each choice
-    //     const button = document.createElement("button");
-    //     button.setAttribute("class", "btn btn-primary button-display");
-
-    //     // displays a number next to the possible answer based on the index
-    //     button.textContent = i + 1 + ". " + currentQuestion.choices;
-
-    //     // display on the page
-    //     choiceContainer.appendChild(button);
-    // }
-
-    const newButton = document.querySelector("button");
-
-    newButton.addEventListener("click", function(event) {
+      // add event listener to each button to see which button was clicked
+      button.addEventListener("click", function (event) {
         event.preventDefault();
 
-        if(currentQuestion.choices === currentQuestion.answer){
+        // if the correct question is picked - display the class "correct"
+        // else display the class "wrong" and penalize time
+        if(event.target.textContent === currentQuestion.answer){
             correctDiv.setAttribute("class", "correct");
         } else {
             time -= 15;
             wrongDiv.setAttribute("class", "wrong");
         }
+      });
+
+      // displays a number next to the possible answer based on the index
+      // displays the choices for the question
+      button.textContent = choice;
+
+      // display on the page
+      choiceContainer.appendChild(button);
+
     });
-
 }
-
 
 // The first view of the application displays a button that starts the quiz.
 // Once the quiz begins, a timer starts.
@@ -118,7 +105,7 @@ function getQuestions() {
 startBtn.addEventListener("click", function(){
 
     // add a class of hide to the startScreen
-    startScreen.setAttribute("class", "hide");
+    startScreen.classList.add("hide");
 
     // removes the class hide from the gameScreen
     gameScreen.classList.remove("hide");
@@ -133,15 +120,21 @@ startBtn.addEventListener("click", function(){
 
 function highScores() {
 
-    startScreen.setAttribute("class", "hide");
+    // hide startScreen
+    startScreen.classList.add("hide");
 
-    gameScreen.setAttribute("class", "hide");
+    // hide gameScreen
+    gameScreen.classList.add("hide");
     
-    endScreen.setAttribute("class", "hide");
+    // hide endScreen
+    endScreen.classList.add("hide");
 
 }
 
 function endQuiz() {
+
+    // hide questions screen
+    gameScreen.classList.add("hide");
 
     // show end of quiz div
     endScreen.classList.remove("hide");
@@ -149,11 +142,8 @@ function endQuiz() {
     // show final score
     finalScore.textContent = time;
 
-    highScores();
-
 }
-
-
+// need to end quiz if user runs out of questions
 
 
 // Score is calculated by time remaining. Answering quickly and correctly results in a higher score. Answering incorrectly results in a time penalty (for example, 15 seconds are subtracted from time remaining).
