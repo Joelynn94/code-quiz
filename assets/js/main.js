@@ -22,6 +22,9 @@ const correctDiv = document.querySelector("#correctDiv");
 const finalScore = document.querySelector("#finalScore");
 const hide = document.querySelector(".hide");
 
+// question index 
+let questionIndex = 0;
+
 
 // set the time based on amount of questions to answer 
 let time = questions.length * 15;
@@ -54,49 +57,87 @@ function countdownTimer() {
 
 // Clicking the start button displays a series of questions.
 
-// function to get questions from the array
-function getQuestions() {
+//separate functions
+//one function to initially loop over buttons and add event listener
+//event listener logic is container in below function
+//separate function to update question and answer button text
 
-    // question index 
-    let questionIndex = 0;
+function createBtns(){
+  /*
+  createn button elements
+  set initial value from questions[questionIndex]
+  then call addListeners()
 
-    // setting the index of the questions array to a variable
+  // setting the index of the questions array to a variable
     let currentQuestion = questions[questionIndex];
 
     // sets the text of the object.title to an h2 
     const questionText = document.querySelector(".question-text");
     questionText.textContent = currentQuestion.title;
 
-    // looping through the choices in the object
     currentQuestion.choices.forEach(function (choice) {
 
       // create new button for each choice
       const button = document.createElement("button");
       button.setAttribute("class", "btn btn-primary button-display");
+      / displays a number next to the possible answer based on the index
+      // displays the choices for the question
+      button.textContent = choice;
 
-      // add event listener to each button to see which button was clicked
-      button.addEventListener("click", function (event) {
+      // display on the page
+      choiceContainer.appendChild(button);
+      addListeners()
+  */
+}
+
+function addListeners(){
+  /*
+  add listener to on click check if clicked element is correct or not
+  and show correctness accordingly/penalize time or update score
+  then call function to advance -- which should increment questionIndex and update text to match current question
+
+  button.addEventListener("click", function (event) {
         event.preventDefault();
 
         // if the correct question is picked - display the class "correct"
         // else display the class "wrong" and penalize time
         if(event.target.textContent === currentQuestion.answer){
             correctDiv.setAttribute("class", "correct");
+            questionIndex++
+            advance()
         } else {
             time -= 15;
             wrongDiv.setAttribute("class", "wrong");
+            advance()
         }
       });
-
-      // displays a number next to the possible answer based on the index
-      // displays the choices for the question
-      button.textContent = choice;
-
-      // display on the page
-      choiceContainer.appendChild(button);
-
-    });
+  */
 }
+
+function advance(){
+/*
+  get current quesiton from questions[questionIndex]
+  update queston text & answer buttons text
+*/
+}
+
+// function to get questions from the array
+// function getQuestions() {
+
+    
+
+    
+
+//     // looping through the choices in the object
+    
+
+//       // add event listener to each button to see which button was clicked
+      
+
+//       /
+
+//     });
+// }
 
 // The first view of the application displays a button that starts the quiz.
 // Once the quiz begins, a timer starts.
@@ -115,7 +156,8 @@ startBtn.addEventListener("click", function(){
 
     // get questions on click
     getQuestions();
-    
+    //createButtons() will get called here instead
+
 });
 
 function highScores() {
