@@ -50,7 +50,7 @@ function countdownTimer() {
         timer.textContent = time;
 
         // checks if time hits zero - if it does - clear the time
-        if (time <= 0){
+        if (time <= 0 || questions.length === 0){
             clearInterval(interval);
             endQuiz();
         }
