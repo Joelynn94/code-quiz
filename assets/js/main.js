@@ -78,7 +78,7 @@ function getQuestions() {
       button.addEventListener("click", function (event) {
         event.preventDefault();
 
-        // if the correct question is picked - display the class "correct"
+        // if the correct question is answered correctly - display the class "correct"
         // else display the class "wrong" and penalize time
         if(event.target.textContent === currentQuestion.answer){
             correctDiv.setAttribute("class", "correct");
