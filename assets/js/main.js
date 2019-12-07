@@ -28,6 +28,12 @@ let time = questions.length * 15;
 let timer = document.querySelector("#timer");
 let interval = 0;
 
+// question index 
+let questionIndex = 0;
+
+// setting the index of the questions array to a variable
+let currentQuestion = questions[questionIndex];
+
 // If a question is answered incorrectly, additional time is subtracted from the timer.
 // The timer stops when all questions have been answered or the timer reaches 0.
 
@@ -56,12 +62,6 @@ function countdownTimer() {
 
 // function to get questions from the array
 function getQuestions() {
-
-    // question index 
-    let questionIndex = 0;
-
-    // setting the index of the questions array to a variable
-    let currentQuestion = questions[questionIndex];
 
     // sets the text of the object.title to an h2 
     const questionText = document.querySelector(".question-text");
