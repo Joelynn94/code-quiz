@@ -82,9 +82,11 @@ function getQuestions() {
         // else display the class "wrong" and penalize time
         if(event.target.textContent === currentQuestion.answer){
             correctDiv.setAttribute("class", "correct");
+            questionIndex++
         } else {
             time -= 15;
             wrongDiv.setAttribute("class", "wrong");
+            questionIndex++;
         }
       });
 
