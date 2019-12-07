@@ -61,7 +61,7 @@ function countdownTimer() {
 // Clicking the start button displays a series of questions.
 
 // function to get questions from the array
-function getQuestions() {
+function getButtons() {
 
     // sets the text of the object.title to an h2 
     const questionText = document.querySelector(".question-text");
@@ -72,23 +72,7 @@ function getQuestions() {
 
       // create new button for each choice
       const button = document.createElement("button");
-      button.setAttribute("class", "btn btn-primary button-display");
-
-      // add event listener to each button to see which button was clicked
-      button.addEventListener("click", function (event) {
-        event.preventDefault();
-
-        // if the correct question is answered correctly - display the class "correct"
-        // else display the class "wrong" and penalize time
-        if(event.target.textContent === currentQuestion.answer){
-            correctDiv.setAttribute("class", "correct");
-            questionIndex++
-        } else {
-            time -= 15;
-            wrongDiv.setAttribute("class", "wrong");
-            questionIndex++;
-        }
-      });
+      button.setAttribute("class", "btn btn-primary button-display answerButton");
 
       // displays a number next to the possible answer based on the index
       // displays the choices for the question
@@ -98,6 +82,36 @@ function getQuestions() {
       choiceContainer.appendChild(button);
 
     });
+}
+
+
+
+function onAnswerBtnClick(e){
+
+        // if the correct question is answered correctly - display the class "correct"
+        // else display the class "wrong" and penalize time
+        if(e.target.textContent === currentQuestion.answer){
+            correctDiv.setAttribute("class", "correct");
+        } else {
+            time -= 15;
+            wrongDiv.setAttribute("class", "wrong");
+        }
+        // go to next question
+        questionIndex++
+        // get a reference to the button 
+        const answerButtonArray = document.querySelectorAll('.answerButton')
+        // get a reference to the h2
+        const questionText = document.querySelector('.question-text')
+
+        // set the text of the title in the object
+        questionText.textContent = questions[questionIndex].title;
+
+        // loop through the buttons
+        for(let i=0; i < answerButtonArray.length; i++){
+            // set the textContent of each button to each choice in the array
+            answerButtonArray[i].textContent = questions[questionIndex].choices[i]
+        }
+
 }
 
 // The first view of the application displays a button that starts the quiz.
@@ -116,8 +130,9 @@ startBtn.addEventListener("click", function(){
     countdownTimer();
 
     // get questions on click
-    getQuestions();
-    
+    getButtons();
+
+    document.querySelectorAll('.answerButton').forEach( a => a.addEventListener('click', onAnswerBtnClick))
 });
 
 function highScores() {
