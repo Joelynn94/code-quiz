@@ -2,16 +2,6 @@
 //# Play proceeds as follows:
 // The user arrives at the landing page and is presented with a call-to-action to "Start Quiz." Also note the navigation option to "View Highscores" and the "Time" value set at 0.
 
-// After the game ends, the user can save their initials and score to a highscores view using local storage.
-
-// Add audio files to alert the user of correct or incorrect answers. Be sure to include the appropriate license.
-
-// Customize the application theme.
-
-// Create multiple quizzes and an option for users to choose between them.
-
-// Add the application to your portfolio.
-
 const startBtn = document.querySelector("#startBtn");
 const startScreen = document.querySelector("#startScreen");
 const gameScreen = document.querySelector("#gameScreen");
@@ -88,29 +78,29 @@ function getButtons() {
 
 function onAnswerBtnClick(e){
 
-        // if the correct question is answered correctly - display the class "correct"
-        // else display the class "wrong" and penalize time
-        if(e.target.textContent === currentQuestion.answer){
-            correctDiv.setAttribute("class", "correct");
-        } else {
-            time -= 15;
-            wrongDiv.setAttribute("class", "wrong");
-        }
-        // go to next question
-        questionIndex++
-        // get a reference to the button 
-        const answerButtonArray = document.querySelectorAll('.answerButton')
-        // get a reference to the h2
-        const questionText = document.querySelector('.question-text')
+    // if the correct question is answered correctly - display the class "correct"
+    // else display the class "wrong" and penalize time
+    if(e.target.textContent === currentQuestion.answer){
+        correctDiv.setAttribute("class", "correct");
+    } else {
+        time -= 15;
+        wrongDiv.setAttribute("class", "wrong");
+    }
+    // go to next question
+    questionIndex++
+    // get a reference to the button 
+    const answerButtonArray = document.querySelectorAll('.answerButton')
+    // get a reference to the h2
+    const questionText = document.querySelector('.question-text')
 
-        // set the text of the title in the object
-        questionText.textContent = questions[questionIndex].title;
+    // set the text of the title in the object
+    questionText.textContent = questions[questionIndex].title;
 
-        // loop through the buttons
-        for(let i=0; i < answerButtonArray.length; i++){
-            // set the textContent of each button to each choice in the array
-            answerButtonArray[i].textContent = questions[questionIndex].choices[i]
-        }
+    // loop through the buttons
+    for(let i=0; i < answerButtonArray.length; i++){
+        // set the textContent of each button to each choice in the array
+        answerButtonArray[i].textContent = questions[questionIndex].choices[i]
+    }
 
 }
 
@@ -132,7 +122,7 @@ startBtn.addEventListener("click", function(){
     // get questions on click
     getButtons();
 
-    document.querySelectorAll('.answerButton').forEach( a => a.addEventListener('click', onAnswerBtnClick))
+    document.querySelectorAll('.answerButton').forEach( a => a.addEventListener('click', onAnswerBtnClick));
 });
 
 function highScores() {
@@ -162,9 +152,7 @@ function endQuiz() {
 }
 // need to end quiz if user runs out of questions
 
-
-// Score is calculated by time remaining. Answering quickly and correctly results in a higher score. Answering incorrectly results in a time penalty (for example, 15 seconds are subtracted from time remaining).
-
+// After the game ends, the user can save their initials and score to a highscores view using local storage.
 
 // When time runs out and/or all questions are answered, the user is presented with their final score and asked to enter their initials. Their final score and initials are then stored in localStorage.
 
