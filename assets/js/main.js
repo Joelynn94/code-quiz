@@ -13,7 +13,8 @@ const finalScore = document.querySelector("#finalScore");
 const hide = document.querySelector(".hide");
 const highScoresScreen = document.querySelector("#highScoresScreen");
 
-const highScoresDiv = document.querySelector("#highScores");
+const userInitials = document.querySelector("#userInitials");
+const userScore = document.querySelector("#userScore");
 const submitBtn = document.querySelector("#submit");
 const initialsInput = document.querySelector("#initialsInput");
 
@@ -165,17 +166,19 @@ submitBtn.addEventListener("click", function(){
         localStorage.setItem("score", timer.textContent)   
 
         let highscores = [];
-        highscores = JSON.parse(localStorage.getItem("highscores"));
 
         let userScore = {
             score: timer.textContent,
             initials: inputValue
         };
 
-        console.log(userScore);
-
         highscores.push(userScore);
-        localStorage.setItem("highscores", JSON.stringify(highscores))
+        localStorage.setItem("highscores", JSON.stringify(highscores));
+
+        highscores = JSON.parse(localStorage.getItem("highscores"));
+
+        userInitials.textContent = highScores.initials;
+        userScore.textContent = highScores.score
     }
 
 });
@@ -186,8 +189,6 @@ submitBtn.addEventListener("click", function(){
 
 // When time runs out and/or all questions are answered, the user is presented with their final score and asked to enter their initials. Their final score and initials are then stored in localStorage.
 
-
-// The length of the array in questions.js determines the length of play. Fifteen seconds per question is a good estimate, so 5 questions will result in a length of play of 75 seconds.
 
 
 
