@@ -129,7 +129,7 @@ startBtn.addEventListener("click", function(){
     document.querySelectorAll('.answerButton').forEach( a => a.addEventListener('click', onAnswerBtnClick));
 });
 
-function highScores() {
+function highScore() {
 
     // hide startScreen
     startScreen.classList.add("hide");
@@ -177,8 +177,8 @@ submitBtn.addEventListener("click", function(){
 
         highscores = JSON.parse(localStorage.getItem("highscores"));
 
-        userInitials.textContent = highScores.initials;
-        userScore.textContent = highScores.score
+        userInitials.textContent = highscores.initials;
+        userScore.textContent = highscores.score
     }
 
 });
