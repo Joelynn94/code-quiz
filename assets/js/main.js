@@ -46,7 +46,7 @@ function countdownTimer() {
         timer.textContent = time;
 
         // checks if time hits zero - if it does - clear the time
-        if (time <= 0 || questions.length === 0){
+        if (time <= 0 || questions.length === ''){
             clearInterval(interval);
             endQuiz();
         }
@@ -157,28 +157,27 @@ function endQuiz() {
 
 submitBtn.addEventListener("click", function(){
 
+    // setting the inputvale to a vairable
     const inputValue = initialsInput.value.trim();
+    const scoreValue = timer.textContent;
+
+    // hides the endScreen
     endScreen.classList.add("hide");
+    // shows the highScoresScreen
     highScoresScreen.classList.remove("hide");
 
+    // if there is an input value
     if(inputValue){
+
+        // set the inputValue to the key "initials"
         localStorage.setItem("initials", inputValue);
-        localStorage.setItem("score", timer.textContent)   
 
-        let highscores = [];
+        // set the value of the timer to the key "score"
+        localStorage.setItem("score", scoreValue)   
 
-        let score = {
-            score: timer.textContent,
-            initials: inputValue
-        };
 
-        highscores.push(score);
-        localStorage.setItem("highscores", JSON.stringify(highscores));
-
-        highscores = JSON.parse(localStorage.getItem("highscores"));
-
-        userInitials.textContent = highscores.initials;
-        userScore.textContent = highscores.score
+        userInitials.textContent = inputValue;
+        userScore.textContent = scoreValue;
     }
 
 });
