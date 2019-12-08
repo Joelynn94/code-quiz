@@ -167,12 +167,12 @@ submitBtn.addEventListener("click", function(){
 
         let highscores = [];
 
-        let userScore = {
+        let score = {
             score: timer.textContent,
             initials: inputValue
         };
 
-        highscores.push(userScore);
+        highscores.push(score);
         localStorage.setItem("highscores", JSON.stringify(highscores));
 
         highscores = JSON.parse(localStorage.getItem("highscores"));
