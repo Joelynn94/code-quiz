@@ -11,6 +11,11 @@ const wrongDiv = document.querySelector("#wrongDiv");
 const correctDiv = document.querySelector("#correctDiv");
 const finalScore = document.querySelector("#finalScore");
 const hide = document.querySelector(".hide");
+const highScoresScreen = document.querySelector("#highScoresScreen");
+
+const highScoresDiv = document.querySelector("#highScores");
+const submitBtn = document.querySelector("#submit");
+const initialsInput = document.querySelector("#initialsInput");
 
 
 // set the time based on amount of questions to answer 
@@ -73,8 +78,6 @@ function getButtons() {
 
     });
 }
-
-
 
 function onAnswerBtnClick(e){
 
@@ -150,6 +153,30 @@ function endQuiz() {
     finalScore.textContent = time;
 
 }
+
+submitBtn.addEventListener("click", function(){
+
+    const inputValue = initialsInput.value.trim();
+    endScreen.classList.add("hide");
+    highScoresScreen.classList.remove("hide");
+
+    if(inputValue){
+        localStorage.setItem("initials", inputValue);
+        localStorage.setItem("score", timer.textContent)   
+
+        let highscores = JSON.parse(localStorage.getItem("highscores"));
+
+        let userScore = {
+            score: timer.textContent,
+            initials: inputValue
+        };
+
+        highscores.push(highScoresDiv);
+        localStorage.setItem("highscores", JSON.stringify(highscores))
+    }
+
+});
+
 // need to end quiz if user runs out of questions
 
 // After the game ends, the user can save their initials and score to a highscores view using local storage.

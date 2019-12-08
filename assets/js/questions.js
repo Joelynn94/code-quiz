@@ -10,4 +10,9 @@ const questions = [
         choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
         answer: "parentheses"
     },
+    {
+        title: "Which operator assigns a value in JavaScript?",
+        choices: ["=", "==", "<=", "!="],
+        answer: "parentheses"
+    }
 ]
