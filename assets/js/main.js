@@ -175,8 +175,10 @@ submitBtn.addEventListener("click", function(){
         // set the value of the timer to the key "score"
         localStorage.setItem("score", scoreValue)   
 
-
+        // set the userInitials textContent to the inputValue
         userInitials.textContent = inputValue;
+        
+        // set the userScore textContent to the scoreValue
         userScore.textContent = scoreValue;
     }
 
