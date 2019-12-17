@@ -46,8 +46,7 @@ function countdownTimer() {
         timer.textContent = time;
 
         // checks if time hits zero - if it does - clear the time
-        if (time <= 0 || questions.length === ''){
-            clearInterval(interval);
+        if (time <= 0 ){
             endQuiz();
         }
     }, 1000);
@@ -70,7 +69,6 @@ function getButtons() {
       const button = document.createElement("button");
       button.setAttribute("class", "btn btn-primary button-display answerButton");
 
-      // displays a number next to the possible answer based on the index
       // displays the choices for the question
       button.textContent = choice;
 
@@ -84,26 +82,37 @@ function onAnswerBtnClick(e){
 
     // if the correct question is answered correctly - display the class "correct"
     // else display the class "wrong" and penalize time
-    if(e.target.textContent === currentQuestion.answer){
+    if(e.target.textContent === currentQuestion.answer){   
         correctDiv.setAttribute("class", "correct");
+        if(questionIndex === 2){
+            endQuiz()
+        }
     } else {
-        time -= 15;
+        time -= 10;
         wrongDiv.setAttribute("class", "wrong");
+        if(questionIndex === 2){
+            endQuiz()
+        }
     }
+
     // go to next question
     questionIndex++
+    currentQuestion = questions[questionIndex];
+    
     // get a reference to the button 
     const answerButtonArray = document.querySelectorAll('.answerButton')
     // get a reference to the h2
     const questionText = document.querySelector('.question-text')
 
-    // set the text of the title in the object
-    questionText.textContent = questions[questionIndex].title;
-
-    // loop through the buttons
-    for(let i=0; i < answerButtonArray.length; i++){
-        // set the textContent of each button to each choice in the array
-        answerButtonArray[i].textContent = questions[questionIndex].choices[i]
+    if(questionIndex < 3){
+        // set the text of the title in the object
+        questionText.textContent = questions[questionIndex].title;
+    
+        // loop through the buttons
+        for(let i=0; i < answerButtonArray.length; i++){
+            // set the textContent of each button to each choice in the array
+            answerButtonArray[i].textContent = questions[questionIndex].choices[i]
+        }
     }
 
 }
@@ -127,6 +136,7 @@ startBtn.addEventListener("click", function(){
     getButtons();
 
     document.querySelectorAll('.answerButton').forEach( a => a.addEventListener('click', onAnswerBtnClick));
+
 });
 
 function highScore() {
@@ -153,6 +163,9 @@ function endQuiz() {
     // show final score
     finalScore.textContent = time;
 
+    // clear the interval when game ends
+    clearInterval(interval)
+
 }
 
 submitBtn.addEventListener("click", function(){
@@ -177,9 +190,10 @@ submitBtn.addEventListener("click", function(){
 
         // set the userInitials textContent to the inputValue
         userInitials.textContent = inputValue;
-        
+
         // set the userScore textContent to the scoreValue
         userScore.textContent = scoreValue;
+
     }
 
 });

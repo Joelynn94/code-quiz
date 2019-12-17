@@ -13,6 +13,6 @@ const questions = [
     {
         title: "Which operator assigns a value in JavaScript?",
         choices: ["=", "==", "<=", "!="],
-        answer: "parentheses"
+        answer: "="
     }
 ]
